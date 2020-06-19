@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr1 = [1, 2, 3, 3, 3, 3, 4, 4];
+        var arr2 = [3, 2, 4, 4, 2, 5, 2, 5, 5];
+        var arr3 = [3, 5, 7, 9, 1];
+
+        var result = [];
+        function solution(arr) {
+            for (var n = 0; n < 100; n++) {
+                result[n] = 1;
+            }
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[i] !== 0 && arr[i] === arr[j]) {
+                        arr[j] = 0;
+                        result[i] += 1;
+                    }
+                }
+            }
+            for (var k = 0; k < 100; k++) {
+                if (result[k] == 1) {
+                    delete result[k];
+                }
+            }
+            const arrFiltered = result.filter(el => {
+                return el != null && el != '';
+            });
+            if (Array.isArray(arrFiltered) && arrFiltered.length) {
+                return arrFiltered;
+            } else {
+                return [-1];
+            }
+        }
+
+        console.log(solution(arr1));
+        console.log(solution(arr2));
+        console.log(solution(arr3));
+    </script>
+</body>
+
+</html>
