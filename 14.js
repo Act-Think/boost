@@ -1,22 +1,22 @@
 'use strict'
-function countNum (num, array) {
-    return array.filter(x=> x == num).length;    
-}
 
-
-function solution (arr) {
-    var set = new Set();
+function solution(arr) {
     var answer = [];
+    var map = new Map();
     arr.forEach(element => {
-        if (!set.has(element)) {
-            set.add(element);
-            var count = countNum(element, arr); 
-            if (count >1) answer.push(count);
+        if (map.has(element)) {
+            map.set(element, map.get(element) + 1)
         }
+        else {
+            map.set(element, 1);
+        }
+    });
+    map.forEach(value => {
+        if (value > 1) 
+            answer.push(value);
     });
     if (answer.length == 0) answer.push(-1);
     return answer;
-
 }
 
 
